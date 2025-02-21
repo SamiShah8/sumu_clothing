@@ -51,7 +51,7 @@ export default function ProductList() {
   }
 
   return (
-    <div className="max-w-[1440px] mx-auto flex  justify-center">
+    <div className="max-w-[1440px] mx-auto flex  w-[95%] justify-center">
       {/* collection */}
       <CategoryList updateCategoryQuery={setQuery} className="hidden " />
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 flex-1 lg:grid-cols-3  lg:gap-8 md:gap-6">
