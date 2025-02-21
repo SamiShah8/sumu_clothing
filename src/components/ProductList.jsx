@@ -2,6 +2,7 @@ import SortList from "./SortList.jsx";
 import CategoryList from "./CategoryList.jsx";
 import axios, { isAxiosError } from "axios";
 import { useEffect, useState } from "react";
+import { RiProductHuntLine } from "react-icons/ri";
 
 const url = "https://api.freeapi.app/api/v1/public/randomproducts?query=";
 
@@ -10,8 +11,22 @@ export default function ProductList() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState("mens-watches");
+  const [imgLoadCount, setImgLoadCount] = useState(0);
+
+  const handleImgLoad = () => {
+    setImgLoadCount(imgLoadCount + 1);
+  };
 
   useEffect(() => {
+    if (imgLoadCount === products.length) {
+      console.log(imgLoadCount, products.length);
+      setIsLoading(false);
+    } else {
+    }
+  }, [imgLoadCount]);
+
+  useEffect(() => {
+    setIsLoading(true);
     axios
       .get(url + query)
       .then((response) => {
@@ -34,18 +49,18 @@ export default function ProductList() {
       });
   }, [query]);
 
-  if (error) {
-    return (
-      <div className="flex  justify-center items-center h-[100vh]">
-        <h1>{error}</h1>
-      </div>
-    );
-  }
-
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-[100vh]">
         <div className="loading-spinner border-[8px] border-t-blue-500 border-t-[8px] border-gray-300 rounded-[50%] h-[40px] w-[40px]"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-[100vh]">
+        <h1>{error}</h1>
       </div>
     );
   }
@@ -55,30 +70,37 @@ export default function ProductList() {
       {/* collection */}
       <CategoryList updateCategoryQuery={setQuery} className="hidden " />
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 flex-1 lg:grid-cols-3  lg:gap-8 md:gap-6">
-        {products.map((product) => {
-          return (
-            <div
-              key={product.id}
-              className="relative border-2 border-gray-200 rounded-lg hover:border-blue-500"
-            >
-              {/* product image  */}
-              <div className="rounded-lg overflow-hidden">
-                <img
-                  src={product.thumbnail}
-                  className="h-full w-full rounded-lg transition-transform duration-300 hover:scale-105 ease-in-out product-img"
-                  alt={product.title}
-                />
-              </div>
-              {/* product price and title  */}
-              <div className="flex border-2 items-center absolute bottom-3 py-1.5 px-3 justify-between gap-4 left-2 border-gray-200 bg-white rounded-full">
-                <p className="text-xs font-semibold">{product.brand}</p>
-                <div className="bg-blue-500 rounded-full p-2 text-sm text-white font-semibold">
-                  <p>${product.price}</p>
+        {isLoading ? (
+          <div className="flex justify-center items-center h-[100vh]">
+            <div className="loading-spinner border-[8px] border-t-blue-500 border-t-[8px] border-gray-300 rounded-[50%] h-[40px] w-[40px]"></div>
+          </div>
+        ) : (
+          products.map((product) => {
+            return (
+              <div
+                key={product.id}
+                className="relative border-2 border-gray-200 rounded-lg hover:border-blue-500"
+              >
+                {/* product image  */}
+                <div className="rounded-lg overflow-hidden">
+                  <img
+                    onLoad={handleImgLoad}
+                    src={product.thumbnail}
+                    className="h-full w-full rounded-lg transition-transform duration-300 hover:scale-105 ease-in-out product-img"
+                    alt={product.title}
+                  />
+                </div>
+                {/* product price and title  */}
+                <div className="flex border-2 items-center absolute bottom-3 py-1.5 px-3 justify-between gap-4 left-2 border-gray-200 bg-white rounded-full">
+                  <p className="text-xs font-semibold">{product.brand}</p>
+                  <div className="bg-blue-500 rounded-full p-2 text-sm text-white font-semibold">
+                    <p>${product.price}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        )}
       </div>
       {/* short by */}
       <SortList updateQuery={setQuery} className="hidden md:block" />

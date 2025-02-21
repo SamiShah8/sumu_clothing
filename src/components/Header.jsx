@@ -22,7 +22,7 @@ export default function Header() {
         <div className="container--fluid">
           {/* <for small screen size */}
           <div className="flex justify-between  items-center py-4 md:hidden">
-            <div className="border border-[var(--btn-color)] rounded-lg md:hidden hover:border-[var(--secondary-color)] sm:hidden">
+            <div className="border border-[var(--btn-color)] rounded-lg  hover:border-[var(--secondary-color)] md:hidden">
               <GiHamburgerMenu
                 onClick={showMenu}
                 className={`h-[2rem] w-[2rem] p-2 cursor-pointer ${
@@ -103,7 +103,7 @@ export default function Header() {
           <div className="text-[0.8rem] w-[95%] m-auto">
             <ImCross
               onClick={hideMenu}
-              className={`h-[2rem] w-[2rem] p-2 my-4 cursor-pointer border border-[var(--btn-color)] rounded-lg md:hidden hover:border-[var(--secondary-color)] sm:hidden
+              className={`h-[2rem] w-[2rem] p-2 my-4 cursor-pointer border border-[var(--btn-color)] rounded-lg md:hidden hover:border-[var(--secondary-color)] 
                 
               }   `}
             />

@@ -16,8 +16,12 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 400;
-  background-color: var(--primary-bg-color);
+  background-color: white;
 }
+/* .hero {
+  background-image: url(../src/assets/hero.png);
+  opacity: 0.5;
+} */
 
 .container--fluid {
   width: 95%;
