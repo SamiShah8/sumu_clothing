@@ -98,7 +98,7 @@ export default function Header() {
         <nav
           className={` ${
             showMobileNav ? "translate-x-0" : "-translate-x-full "
-          }   md:hidden   bg-white h-screen fixed top-0  w-full  transition-transform duration-300 ease-in-out `}
+          }   md:hidden   bg-white h-screen fixed top-0  w-full  transition-transform duration-300 linear`}
         >
           <div className="text-[0.8rem] w-[95%] m-auto">
             <ImCross

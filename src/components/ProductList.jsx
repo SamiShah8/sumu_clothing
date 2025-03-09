@@ -2,7 +2,6 @@ import SortList from "./SortList.jsx";
 import CategoryList from "./CategoryList.jsx";
 import axios, { isAxiosError } from "axios";
 import { useEffect, useState } from "react";
-import { RiProductHuntLine } from "react-icons/ri";
 
 const url = "https://api.freeapi.app/api/v1/public/randomproducts?query=";
 

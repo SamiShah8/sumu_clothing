@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import Logo from "../assets/logo.png";
 function Footer() {
   return (
-    <footer className="border-t border-[var(--specific-color)] mt-[2rem] ">
+    <footer className="border-t border-[var(--specific-color)] mt-[2rem] bg-red-50">
       <div className="  flex flex-col  gap-[2rem] py-[2rem] w-[80%] m-auto md:flex-row justify-between md: md:w-[95%]">
         {/* logo */}
         <div className=" md:flex gap-4 md:items-start md:gap-12">

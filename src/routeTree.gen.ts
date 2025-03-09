@@ -12,6 +12,8 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as ProductsImport } from './routes/products'
+import { Route as DemoTwoImport } from './routes/demo-two'
+import { Route as CraouselImport } from './routes/craousel'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -19,6 +21,18 @@ import { Route as IndexImport } from './routes/index'
 const ProductsRoute = ProductsImport.update({
   id: '/products',
   path: '/products',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DemoTwoRoute = DemoTwoImport.update({
+  id: '/demo-two',
+  path: '/demo-two',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CraouselRoute = CraouselImport.update({
+  id: '/craousel',
+  path: '/craousel',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,6 +53,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/craousel': {
+      id: '/craousel'
+      path: '/craousel'
+      fullPath: '/craousel'
+      preLoaderRoute: typeof CraouselImport
+      parentRoute: typeof rootRoute
+    }
+    '/demo-two': {
+      id: '/demo-two'
+      path: '/demo-two'
+      fullPath: '/demo-two'
+      preLoaderRoute: typeof DemoTwoImport
+      parentRoute: typeof rootRoute
+    }
     '/products': {
       id: '/products'
       path: '/products'
@@ -53,36 +81,46 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/craousel': typeof CraouselRoute
+  '/demo-two': typeof DemoTwoRoute
   '/products': typeof ProductsRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/craousel': typeof CraouselRoute
+  '/demo-two': typeof DemoTwoRoute
   '/products': typeof ProductsRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/craousel': typeof CraouselRoute
+  '/demo-two': typeof DemoTwoRoute
   '/products': typeof ProductsRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/products'
+  fullPaths: '/' | '/craousel' | '/demo-two' | '/products'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/products'
-  id: '__root__' | '/' | '/products'
+  to: '/' | '/craousel' | '/demo-two' | '/products'
+  id: '__root__' | '/' | '/craousel' | '/demo-two' | '/products'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CraouselRoute: typeof CraouselRoute
+  DemoTwoRoute: typeof DemoTwoRoute
   ProductsRoute: typeof ProductsRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CraouselRoute: CraouselRoute,
+  DemoTwoRoute: DemoTwoRoute,
   ProductsRoute: ProductsRoute,
 }
 
@@ -97,11 +135,19 @@ export const routeTree = rootRoute
       "filePath": "__root.jsx",
       "children": [
         "/",
+        "/craousel",
+        "/demo-two",
         "/products"
       ]
     },
     "/": {
       "filePath": "index.jsx"
+    },
+    "/craousel": {
+      "filePath": "craousel.jsx"
+    },
+    "/demo-two": {
+      "filePath": "demo-two.jsx"
     },
     "/products": {
       "filePath": "products.jsx"
