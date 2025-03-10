@@ -18,7 +18,6 @@ export default function Carousel(props) {
       setCurrent(current + 1);
     }
   };
-  console.log(props);
   return (
     <div className="overflow-hidden relative flex">
       <div
