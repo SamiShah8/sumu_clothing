@@ -6,7 +6,7 @@ function BestSeller() {
     axios
       .get("https://fakestoreapi.com/products")
       .then((response) => {
-        setCatagories(response.data.slice(0,16));
+        setCatagories(response.data.slice(0, 16));
       })
       .catch((err) => {
         console.log("there is an error", err);
@@ -24,7 +24,7 @@ function BestSeller() {
         </div>
         {catagories.map((catagory) => {
           return (
-            <div key={catagory.id} className="border card  border-yellow-500">
+            <div key={catagory.id} className="border card border-yellow-500">
               <div className="object-cover">
                 <img src={catagory.image} alt={catagory.title} />
               </div>
