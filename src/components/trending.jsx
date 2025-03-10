@@ -30,13 +30,17 @@ function Trending() {
                 <div className=" min-w-[300px] h-[300px] overflow-hidden  object-cover flex items-center hover:rounded-t-2xl p-6 border-b border-gray-300">
                   <img src={product.image} alt="there is trending img" />
                 </div>
-                <p>
-                  {product.title.length > 25
-                    ? product.title.slice(0, 25) + "..."
-                    : product.title}
-                </p>
-                <p className="text-red-500 text-[20px]">NPR {product.price}</p>
-                <p>({product.rating.rate})</p>
+                <div className="p-2">
+                  <p>
+                    {product.title.length > 25
+                      ? product.title.slice(0, 25) + "..."
+                      : product.title}
+                  </p>
+                  <p className="text-red-500 text-[20px]">
+                    NPR {product.price}
+                  </p>
+                  <p>({product.rating.rate})</p>
+                </div>
               </div>
             );
           })}

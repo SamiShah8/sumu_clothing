@@ -26,14 +26,8 @@ function Images() {
 
   const images = [img3, img4, img5, img1, img2];
   return (
-    <div className="flex items-center mx-auto w-[95%]  bg-red-50">
-      <div className=" flex flex-col gap-3 px-8 text-center">
-        <h1 className="text-green-700 text-8xl">sumu clothings</h1>
-        <h2 className="text-green-700 text-2xl">
-          From Casual to Classy, We’ve Got You Covered.
-        </h2>
-      </div>
-      <div className="h-screen flex justify-end  w-[50%]">
+    <div className="flex items-center mx-auto w-[95%] ">
+      <div className="h-screen flex justify-end  w-[100%] ">
         <Carousel img={images} />
       </div>
     </div>
